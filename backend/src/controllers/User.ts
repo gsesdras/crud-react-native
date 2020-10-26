@@ -2,6 +2,16 @@ import { Request, Response } from "express";
 import { getRepository } from "typeorm";
 import User from "../models/User";
 import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
+
+function genToken(id: number) {
+  return jwt.sign({ id }, "secret", {
+    expiresIn: 86400,
+  });
+}
+async function verifyToken(token: string) {
+  return await jwt.verify(token, "secret");
+}
 
 const UserController = {
   async index(req: Request, res: Response) {
@@ -90,6 +100,33 @@ const UserController = {
 
     const result = await userRepository.delete(req.params.id);
     return res.status(200).json({ message: "SUCCESS", result });
+  },
+  async authenticate(req: Request, res: Response) {
+    const userRepository = getRepository(User);
+
+    try {
+      const { email, password } = req.body;
+
+      const user = await userRepository.findOne({ email });
+      if (!user) {
+        return res.status(400).json({ message: "User doesn't exist" });
+      }
+      const comparePass = bcrypt.compareSync(password, user.password);
+
+      if (!comparePass) {
+        return res.status(400).json({ message: "Password doesn't match'" });
+      }
+
+      const token = genToken(user.id);
+
+      return res.json({
+        name: user.name,
+        email,
+        token,
+      });
+    } catch (err) {
+      console.log(err);
+    }
   },
 };
 

@@ -2,18 +2,19 @@ import { useNavigation } from "@react-navigation/native";
 import React, { useState } from "react";
 import { View, StyleSheet, Text, TextInput } from "react-native";
 import { RectButton } from "react-native-gesture-handler";
+import { useAuth } from "../../contexts/auth";
 
 // import { Container } from './styles';
 
 const SignUp: React.FC = () => {
-  const [name, setName] = useState();
-  const [email, setEmail] = useState();
-  const [pass, setPass] = useState();
+  const [name, setName] = useState<string>("");
+  const [email, setEmail] = useState<string>("");
+  const [pass, setPass] = useState<string>("");
 
-  const navigation = useNavigation();
+  const { signUp, signUpResponse } = useAuth();
 
   function handleSignUp() {
-    navigation.navigate("Dashboard");
+    signUp(name, email, pass);
   }
 
   return (
@@ -27,7 +28,7 @@ const SignUp: React.FC = () => {
             autoCompleteType="name"
             style={styles.input}
             value={name}
-            onChangeText={() => setName}
+            onChangeText={setName}
           />
         </View>
         <View>
@@ -38,18 +39,29 @@ const SignUp: React.FC = () => {
             keyboardType="email-address"
             style={styles.input}
             value={email}
-            onChangeText={() => setEmail}
+            onChangeText={setEmail}
           />
         </View>
         <View>
           <Text style={styles.label}>Senha</Text>
           <TextInput
+            secureTextEntry={true}
             autoCapitalize="none"
             style={styles.input}
             value={pass}
-            onChangeText={() => setPass}
+            onChangeText={setPass}
           />
         </View>
+        {signUpResponse?.error ? (
+          <View style={styles.errorContainer}>
+            <Text style={styles.error}>{signUpResponse.error}</Text>
+          </View>
+        ) : null}
+        {signUpResponse?.success ? (
+          <View style={styles.successContainer}>
+            <Text style={styles.error}>{signUpResponse.success}</Text>
+          </View>
+        ) : null}
       </View>
       <View style={styles.buttonContainer}>
         <RectButton style={styles.button} onPress={handleSignUp}>
@@ -99,6 +111,25 @@ const styles = StyleSheet.create({
     color: "#fff",
     fontSize: 22,
     fontFamily: "Nunito_400Regular",
+  },
+  errorContainer: {
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "#e87d81",
+    height: 40,
+    borderRadius: 5,
+  },
+  error: {
+    color: "white",
+    fontFamily: "Nunito_600SemiBold",
+    fontSize: 16,
+  },
+  successContainer: {
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "#95f098",
+    height: 40,
+    borderRadius: 5,
   },
 });
 

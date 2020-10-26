@@ -6,6 +6,8 @@ import {
   Nunito_700Bold,
   useFonts,
 } from "@expo-google-fonts/nunito";
+import { NavigationContainer } from "@react-navigation/native";
+import AuthContext, { AuthProvider } from "./src/contexts/auth";
 
 export default function App() {
   const [loaded, error] = useFonts({
@@ -18,5 +20,11 @@ export default function App() {
     return null;
   }
 
-  return <Routes />;
+  return (
+    <NavigationContainer>
+      <AuthProvider>
+        <Routes />
+      </AuthProvider>
+    </NavigationContainer>
+  );
 }

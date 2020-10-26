@@ -1,18 +1,19 @@
 import { useNavigation } from "@react-navigation/native";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { View, StyleSheet, Text, TextInput } from "react-native";
 import { RectButton } from "react-native-gesture-handler";
+import { useAuth } from "../../contexts/auth";
 
 // import { Container } from './styles';
 
 const SignIn: React.FC = () => {
-  const [email, setEmail] = useState();
-  const [pass, setPass] = useState();
+  const { signed, signIn, signInResponse } = useAuth();
 
-  const navigation = useNavigation();
+  const [email, setEmail] = useState<string>("");
+  const [password, setPass] = useState<string>("");
 
-  function handleSignIn() {
-    navigation.navigate("Dashboard");
+  async function handleSignIn() {
+    signIn(email, password);
   }
 
   return (
@@ -27,18 +28,24 @@ const SignIn: React.FC = () => {
             keyboardType="email-address"
             style={styles.input}
             value={email}
-            onChangeText={() => setEmail}
+            onChangeText={setEmail}
           />
         </View>
         <View>
           <Text style={styles.label}>Senha</Text>
           <TextInput
+            secureTextEntry={true}
             autoCapitalize="none"
             style={styles.input}
-            value={pass}
-            onChangeText={() => setPass}
+            value={password}
+            onChangeText={setPass}
           />
         </View>
+        {signInResponse ? (
+          <View style={styles.errorContainer}>
+            <Text style={styles.error}>{signInResponse}</Text>
+          </View>
+        ) : null}
       </View>
       <View style={styles.buttonContainer}>
         <RectButton style={styles.button} onPress={handleSignIn}>
@@ -88,6 +95,18 @@ const styles = StyleSheet.create({
     color: "#fff",
     fontSize: 22,
     fontFamily: "Nunito_400Regular",
+  },
+  errorContainer: {
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "#e87d81",
+    height: 40,
+    borderRadius: 5,
+  },
+  error: {
+    color: "white",
+    fontFamily: "Nunito_600SemiBold",
+    fontSize: 16,
   },
 });
 
