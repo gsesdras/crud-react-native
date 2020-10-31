@@ -30,6 +30,6 @@ No intuito de deixar a utilização mais fácil, eu deixei um arquivo <code>.env
 
 O serviço de envio de e-mail usado foi o: <a href="https://sendgrid.com/">SendGrid</a>. Lá você obtem todos os dados necessários para o envio dos e-mails.
 
-Após essa configuração, rode este comando no seu terminal: <code>yarn dev</code>
+Após essa configuração, rode este comando no seu terminal: <code>yarn dev</code> ou <code>npm run dev</code>
 
 Pronto! O backend estará funcionando!
