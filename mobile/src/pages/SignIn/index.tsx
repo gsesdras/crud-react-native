@@ -1,4 +1,4 @@
-import { useNavigation } from "@react-navigation/native";
+import { Link, useNavigation } from "@react-navigation/native";
 import React, { useContext, useState } from "react";
 import { View, StyleSheet, Text, TextInput } from "react-native";
 import { RectButton } from "react-native-gesture-handler";
@@ -11,9 +11,13 @@ const SignIn: React.FC = () => {
 
   const [email, setEmail] = useState<string>("");
   const [password, setPass] = useState<string>("");
+  const navigation = useNavigation();
 
   async function handleSignIn() {
     signIn(email, password);
+  }
+  async function handleForgotPassword() {
+    navigation.navigate("ForgotPassword");
   }
 
   return (
@@ -41,6 +45,9 @@ const SignIn: React.FC = () => {
             onChangeText={setPass}
           />
         </View>
+        <RectButton style={styles.forgotBtn} onPress={handleForgotPassword}>
+          <Text>Esqueceu sua senha?</Text>
+        </RectButton>
         {signInResponse ? (
           <View style={styles.errorContainer}>
             <Text style={styles.error}>{signInResponse}</Text>
@@ -107,6 +114,11 @@ const styles = StyleSheet.create({
     color: "white",
     fontFamily: "Nunito_600SemiBold",
     fontSize: 16,
+  },
+  forgotBtn: {
+    justifyContent: "center",
+    width: 120,
+    height: 25,
   },
 });
 

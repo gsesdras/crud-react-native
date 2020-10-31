@@ -6,6 +6,7 @@ const routes = Router();
 
 routes.route("/auth").post(UserController.authenticate);
 routes.route("/users").post(UserController.store);
+routes.route("/forgot_password").post(UserController.forgotPass);
 
 routes.use(authMiddleware);
 

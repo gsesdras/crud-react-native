@@ -3,14 +3,15 @@ import { getRepository } from "typeorm";
 import User from "../models/User";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
+import sgMail from "@sendgrid/mail";
 
 function genToken(id: number) {
-  return jwt.sign({ id }, "secret", {
+  return jwt.sign({ id }, process.env.SECRET || "secret", {
     expiresIn: 86400,
   });
 }
 async function verifyToken(token: string) {
-  return await jwt.verify(token, "secret");
+  return await jwt.verify(token, process.env.SECRET || "secret");
 }
 
 const UserController = {
@@ -127,6 +128,43 @@ const UserController = {
     } catch (err) {
       console.log(err);
     }
+  },
+  async forgotPass(req: Request, res: Response) {
+    const userRepository = getRepository(User);
+
+    if (!req.body.email)
+      return res.status(400).json({ message: "Please provide an email!" });
+
+    const user = await userRepository.findOne({ email: req.body.email });
+
+    if (!user) return res.status(400).json({ message: "User doesn't exist" });
+
+    const chars =
+      "abcdefghijklmnopqrstuvwxyz0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    var pass = "";
+    for (var i = 0; i < 10; i++) pass += chars.charAt(Math.random() * 61);
+
+    bcrypt.hash(pass, 10, async function (err, hash) {
+      userRepository.merge(user, { password: hash });
+      const result = await userRepository.save(user);
+    });
+
+    sgMail.setApiKey(process.env.MAIL_API_KEY || "");
+    const msg = {
+      to: user.email,
+      from: process.env.SENDER_MAIL || "",
+      subject: "Recuperação de senha!",
+      text: `Olá, ${user.name}. Sua nova senha é: ${pass}`,
+      html: `<h3 style="font-family: sans-serif">Olá, ${user.name}.</h3>
+      <p style="font-family: sans-serif">Sua nova senha é: ${pass}</p>`,
+    };
+    try {
+      await sgMail.send(msg);
+      console.log("Email sent");
+    } catch (error) {
+      console.error(error);
+    }
+    res.send();
   },
 };
 
