@@ -29,3 +29,7 @@ Após isso, você deve criar um arquivo <code>.env</code> na raiz do seu projeto
 No intuito de deixar a utilização mais fácil, eu deixei um arquivo <code>.env.example</code> contendo todas as variáveis ambientes que são usadas no projeto.
 
 O serviço de envio de e-mail usado foi o: <a href="https://sendgrid.com/">SendGrid</a>. Lá você obtem todos os dados necessários para o envio dos e-mails.
+
+Após essa configuração, rode este comando no seu terminal: <code>yarn dev</code>
+
+Pronto! O backend estará funcionando!
