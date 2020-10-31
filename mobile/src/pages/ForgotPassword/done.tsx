@@ -8,7 +8,7 @@ const ForgotPasswordDone: React.FC = () => {
   return (
     <View style={styles.container}>
       <Text style={styles.text}>
-        Um link de recuperação de senha foi enviado para o seu e-mail.
+        Uma nova senha foi enviada para o seu e-mail.
       </Text>
       <View style={styles.buttonContainer}>
         <RectButton style={styles.button} onPress={handleGoToSignIn}>

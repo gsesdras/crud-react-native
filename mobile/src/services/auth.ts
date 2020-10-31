@@ -3,6 +3,7 @@ import api from "./api";
 interface SignInResponse {
   token: string;
   user: {
+    id: number;
     name: string;
     email: string;
   };
@@ -24,6 +25,7 @@ export function signIn(
       resolve({
         token: response.data.token,
         user: {
+          id: response.data.id,
           name: response.data.name,
           email,
         },

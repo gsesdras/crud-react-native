@@ -121,6 +121,7 @@ const UserController = {
       const token = genToken(user.id);
 
       return res.json({
+        id: user.id,
         name: user.name,
         email,
         token,

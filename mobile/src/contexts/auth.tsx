@@ -4,9 +4,15 @@ import AsyncStorage from "@react-native-community/async-storage";
 import api from "../services/api";
 import { useNavigation } from "@react-navigation/native";
 
+interface User {
+  id: number;
+  email: string;
+  name: string;
+}
+
 interface AuthContextData {
   signed: boolean;
-  user: object | null;
+  user: User | null;
   loading: boolean;
   signInResponse: object | null;
   signUpResponse: {
@@ -21,7 +27,7 @@ interface AuthContextData {
 const AuthContext = createContext<AuthContextData>({} as AuthContextData);
 
 export const AuthProvider: React.FC = ({ children }) => {
-  const [user, setUser] = useState<object | null>(null);
+  const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
   const [signInResponse, setSignInResponse] = useState<object | null>(null);
   const [signUpResponse, setSignUpResponse] = useState<object | null>(null);
@@ -44,7 +50,6 @@ export const AuthProvider: React.FC = ({ children }) => {
   async function signIn(email: string, pass: string) {
     try {
       const response = await auth.signIn(email, pass);
-
       setUser(response.user);
       api.defaults.headers.Authorization = `Bearer ${response.token}`;
 

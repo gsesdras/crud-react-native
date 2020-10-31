@@ -1,21 +1,30 @@
-import React, { useContext } from "react";
+import { useNavigation } from "@react-navigation/native";
+import React, { useContext, useEffect } from "react";
 import { View, Text, StyleSheet, Dimensions } from "react-native";
 import { RectButton } from "react-native-gesture-handler";
 import { useAuth } from "../../contexts/auth";
+import api from "../../services/api";
 
 // import { Container } from './styles';
 
 const Dashboard: React.FC = () => {
   const { user, signOut } = useAuth();
+  const navigation = useNavigation();
 
   function handleSignOut() {
     signOut();
   }
+  function handleChangePassword() {
+    navigation.navigate("ChangePassword");
+  }
   return (
     <View style={styles.container}>
-      <Text>Dashboard</Text>
+      <Text>Olá, {user?.name}</Text>
       <RectButton style={styles.button} onPress={handleSignOut}>
         <Text style={styles.textButton}>Sair</Text>
+      </RectButton>
+      <RectButton style={styles.button} onPress={handleChangePassword}>
+        <Text style={styles.textButton}>Redefinir senha</Text>
       </RectButton>
     </View>
   );

@@ -7,7 +7,7 @@ import {
   useFonts,
 } from "@expo-google-fonts/nunito";
 import { NavigationContainer } from "@react-navigation/native";
-import AuthContext, { AuthProvider } from "./src/contexts/auth";
+import { AuthProvider } from "./src/contexts/auth";
 
 export default function App() {
   const [loaded, error] = useFonts({
