@@ -44,4 +44,15 @@ Para instalar é simples:
 
 Após isso, abra a pasta do front-end no seu terminal e execute: <code>yarn</code> ou <code>npm install</code>
 
+Antes de iniciar o projeto, lembre de mudar a URL base da api, no arquivo: <code>./src/services/api.ts</code>
+
+(Coloque sempre o ip da sua máquina para evitar erros de conexão. Ex: 10.0.0.105 ou 198.164.0.105)
+
 Agora é só iniciar o projeto: <code>yarn start</code> ou <code>npm start</code>
+
+## Autor
+
+## Author
+
+| [<img src="https://avatars0.githubusercontent.com/u/4248081?v=3&s=115"><br><sub>@filipedeschamps</sub>](https://github.com/filipedeschamps) |
+| :---: |
