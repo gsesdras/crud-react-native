@@ -1,2 +1,7 @@
 # crud-react-native
-React Native App that simulates a CRUD scenario
+Um sistema CRUD bem simples com as funcionalidades:
+- Login com autenticação
+- Cadastro
+- Sair
+- Esqueci minha senha
+- Trocar senha pela Dashboard 
