@@ -33,3 +33,15 @@ O serviço de envio de e-mail usado foi o: <a href="https://sendgrid.com/">SendG
 Após essa configuração, rode este comando no seu terminal: <code>yarn dev</code> ou <code>npm run dev</code>
 
 Pronto! O backend estará funcionando!
+
+### Front-end
+
+Para testar a aplicação front end - desenvolvida em React Native -, você deve instalar a cli do Expo.
+
+Para instalar é simples:
+
+<code>npm install -g expo-cli</code> ou <code>yarn add global expo-cli</code>
+
+Após isso, abra a pasta do front-end no seu terminal e execute: <code>yarn</code> ou <code>npm install</code>
+
+Agora é só iniciar o projeto: <code>yarn start</code> ou <code>npm start</code>
