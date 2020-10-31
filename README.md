@@ -18,4 +18,9 @@ Um sistema CRUD bem simples no intuito de criar portifólio e agregar conhecimen
 Para testar minha aplicação, você tem que configurar o backend e o frontend mobile.
 
 ### Back-end
-Abra a pasta <code>backend</code>
+Abra a pasta <code>backend</code> pelo seu terminal e digite o seguinte comando:
+<code>yarn</code> ou <code>npm install</code>
+Este comando vai fazer o download de todas os pacotes utilizados no projeto.
+
+Após isso, você deve criar um arquivo <code>.env</code> na raiz do seu projeto.
+No intuito de deixar a utilização mais fácil, eu deixei um arquivo <code>.env.example</code> contendo todas as variáveis ambientes que são usadas no projeto.
