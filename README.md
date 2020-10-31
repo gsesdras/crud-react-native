@@ -1,4 +1,4 @@
-# crud-react-native
+# CRUD em React Native
 Um sistema CRUD bem simples no intuito de criar portifólio e agregar conhecimento no desenvolvimento de aplicações web e mobile.
 
 ## Funcionalidades
