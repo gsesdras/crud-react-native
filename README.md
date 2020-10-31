@@ -50,8 +50,6 @@ Antes de iniciar o projeto, lembre de mudar a URL base da api, no arquivo: <code
 
 Agora é só iniciar o projeto: <code>yarn start</code> ou <code>npm start</code>
 
-## Autor
-
 ## Author
 
 | [<img width="150px" height="150px" src="https://avatars0.githubusercontent.com/u/43199901?s=460&v=4"><br><sub>@gsesdras</sub>](https://github.com/gsesdras) |
