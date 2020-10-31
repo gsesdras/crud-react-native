@@ -54,5 +54,5 @@ Agora é só iniciar o projeto: <code>yarn start</code> ou <code>npm start</code
 
 ## Author
 
-| [<img src="https://avatars0.githubusercontent.com/u/4248081?v=3&s=115"><br><sub>@filipedeschamps</sub>](https://github.com/filipedeschamps) |
+| [<img src="https://avatars0.githubusercontent.com/u/43199901?s=460&v=4"><br><sub>@gsesdras</sub>](https://github.com/gsesdras) |
 | :---: |
