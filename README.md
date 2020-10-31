@@ -27,3 +27,4 @@ Este comando vai fazer o download de todas os pacotes utilizados no projeto.
 
 Após isso, você deve criar um arquivo <code>.env</code> na raiz do seu projeto.
 No intuito de deixar a utilização mais fácil, eu deixei um arquivo <code>.env.example</code> contendo todas as variáveis ambientes que são usadas no projeto.
+O serviço de envio de e-mail usado foi o: <a href="https://sendgrid.com/">SendGrid</a>. Lá você obtem todos os dados necessários para o envio dos e-mails.
